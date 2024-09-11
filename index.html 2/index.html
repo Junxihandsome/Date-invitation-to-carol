@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Invitation</title>
+    <style>
+        body {
+            background-color: #fcfcfc;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 90px;
+        }
+        h1, h2 {
+            color: #110000;
+            font-size: 1.5em;
+        }
+        .buttons {
+            margin-top: 25px;
+        }
+        .button {
+            padding: 15px 30px;
+            font-size: 1.5em;
+            color: #ffffff;
+            background-color: #39748e;
+            border: none;
+            border-radius: 10px;
+            margin: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #5ccaf6;
+        }
+        #noButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .hidden {
+            display: none;
+        }
+
+        /* Image styling and responsive design */
+        #thirdImages {
+            display: none; /* Ensure images are hidden by default */
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        #thirdImages img {
+            width: 20%; /* Adjusted width for both images to fit side by side */
+            height: auto;
+            border-radius: 10px; /* Optional: rounded corners */
+        }
+
+        /* Final image styling */
+        #finalImage {
+            width: 40%; /* Adjust width for the final image */
+            height: auto;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+        /* Media Queries: Adjustments for smaller screens */
+        @media (max-width: 768px) {
+            h1, h2 {
+                font-size: 1.2em; /* Make the text smaller on mobile */
+            }
+            
+            .button {
+                font-size: 1.2em; /* Reduce button font size */
+                padding: 10px 20px; /* Reduce padding on buttons */
+            }
+
+            #thirdImages img {
+                width: 80%; /* Make images larger on smaller screens */
+            }
+
+            /* Center the buttons on mobile by setting width to 100% */
+            .buttons {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            /* Adjust final image size for mobile */
+            #finalImage {
+                width: 80%; /* Make final image smaller on mobile */
+            }
+        }
+
+        /* Extra small devices (e.g., smartphones in portrait mode) */
+        @media (max-width: 480px) {
+            h1, h2 {
+                font-size: 1em; /* Further reduce text size */
+            }
+
+            .button {
+                font-size: 1em;
+                padding: 8px 15px; /* Make the buttons smaller */
+            }
+
+            #thirdImages img {
+                width: 90%; /* Even larger images on smaller screens */
+            }
+
+            #finalImage {
+                width: 90%; /* Final image takes up more width on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="mainQuestion">Hi Carol! Will You Go Out with Me?</h1>
+    <div class="buttons" id="firstButtons">
+        <img src="images/b9105c260d378f2068ed5b2a5f301783.png" />
+        <button class="button" onclick="showNextQuestion()">Yes</button>
+        <button class="button" id="noButton" onclick="alert('Oh no! 😢')">No</button>
+    </div>
+    
+    <!-- Second question -->
+    <h2 id="secondQuestion" class="hidden">Would you be free on 12/9/2024 and 21/9/2024?</h2>
+    <div class="buttons hidden" id="secondButtons">
+        <img src="images/f1e1f79127e5ac3766b2d4afbeb5bc42.png" />
+        <button class="button" onclick="showThirdQuestion()">Yes</button>
+    </div>
+
+    <!-- Third question with images -->
+    <h2 id="thirdQuestion" class="hidden">Would you go out with me to Singapore Stadium (12/9/2024) and Marina Bay Street Circuit (21/9/2024)?</h2>
+    <div id="thirdImages" class="hidden">
+        <img src="images/1698065796912.jpg" alt="Singapore Stadium">
+        <img src="images/formula-1-singapore-gp-2022-ch-2.jpg" alt="Marina Bay Street Circuit">
+    </div>
+    <div class="buttons hidden" id="thirdButtons">
+        <button class="button" onclick="showFinalPage()">Yes</button>
+    </div>
+
+    <!-- Final message -->
+    <h1 id="finalMessage" class="hidden">Thanks for hanging out with me, see you soon <3</h1>
+    
+    <!-- Final image -->
+    <img id="finalImage" class="hidden" src="images/cute-love-pictures-4iz8w9kg388vrjtx.png" />
+    
+    <script>
+        const noButton = document.getElementById('noButton');
+
+        // Make the "No" button move when the mouse hovers over it
+        noButton.addEventListener('mouseover', () => {
+            const x = Math.floor(Math.random() * window.innerWidth);
+            const y = Math.floor(Math.random() * window.innerHeight);
+            noButton.style.top = `${y}px`;
+            noButton.style.left = `${x}px`;
+        });
+
+        // Show the second question after the first "Yes"
+        function showNextQuestion() {
+            document.getElementById('mainQuestion').classList.add('hidden');
+            document.getElementById('firstButtons').classList.add('hidden');
+            document.getElementById('secondQuestion').classList.remove('hidden');
+            document.getElementById('secondButtons').classList.remove('hidden');
+        }
+
+        // Show the third question and the images after the second "Yes"
+        function showThirdQuestion() {
+            document.getElementById('secondQuestion').classList.add('hidden');
+            document.getElementById('secondButtons').classList.add('hidden');
+            document.getElementById('thirdQuestion').classList.remove('hidden');
+            document.getElementById('thirdButtons').classList.remove('hidden');
+            document.getElementById('thirdImages').style.display = 'flex'; // Ensure images only appear here
+        }
+
+        // Show the final message and image after the third "Yes"
+        function showFinalPage() {
+            document.getElementById('thirdQuestion').classList.add('hidden');
+            document.getElementById('thirdButtons').classList.add('hidden');
+            document.getElementById('thirdImages').style.display = 'none'; // Hide the images here
+            document.getElementById('finalMessage').classList.remove('hidden');
+            document.getElementById('finalImage').classList.remove('hidden'); // Show the final image here
+        }
+    </script>
+
+</body>
+</html>
