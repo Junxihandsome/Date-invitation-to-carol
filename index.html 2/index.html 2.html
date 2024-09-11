@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Invitation</title>
+    <style>
+        body {
+            background-color: #fcfcfc;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 90px;
+        }
+        h1, h2 {
+            color: #110000;
+            font-size: 1.5em;
+        }
+        .buttons {
+            margin-top: 25px;
+        }
+        .button {
+            padding: 15px 30px;
+            font-size: 1.5em;
+            color: #ffffff;
+            background-color: #6a9cb1;
+            border: none;
+            border-radius: 10px;
+            margin: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #5ccaf6;
+        }
+        .hidden {
+            display: none;
+        }
+
+        /* Styling for images */
+        img {
+            width: 28%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            h1, h2 {
+                font-size: 1.2em;
+            }
+            .button {
+                font-size: 1.2em;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- First question page -->
+    <div id="page1" class="page">
+        <h1>Hi Carol! Will You Go Out with Me?</h1>
+        <img src="images/b9105c260d378f2068ed5b2a5f301783.png" />
+        <div class="buttons">
+            <button class="button" onclick="goToNextPage('page2')">Yes</button>
+            <button class="button" onclick="alert('Oh no! 😢')">No</button>
+        </div>
+    </div>
+    
+    <!-- Second question page -->
+    <div id="page2" class="page hidden">
+        <h2>Would you be free on 12/9/2024 and 21/9/2024?</h2>
+        <img src="images/f1e1f79127e5ac3766b2d4afbeb5bc42.png" />
+        <div class="buttons">
+            <button class="button" onclick="goToNextPage('page3')">Yes</button>
+        </div>
+    </div>
+
+    <!-- Third question page -->
+    <div id="page3" class="page hidden">
+        <h2>Would you go out with me to Singapore Stadium (12/9/2024) and Marina Bay Street Circuit (21/9/2024)?</h2>
+        <img src="images/1698065796912.jpg" alt="Singapore Stadium">
+        <img src="images/formula-1-singapore-gp-2022-ch-2.jpg" alt="Marina Bay Street Circuit">
+        <div class="buttons">
+            <button class="button" onclick="goToNextPage('finalPage')">Yes</button>
+        </div>
+    </div>
+
+    <!-- Final page -->
+    <div id="finalPage" class="page hidden">
+        <h1>Thanks for hanging out with me, see you soon <3</h1>
+        <img src="images/cute-love-pictures-4iz8w9kg388vrjtx.png" />
+    </div>
+
+    <script>
+        // Function to go to the next page
+        function goToNextPage(nextPageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.add('hidden');
+            });
+
+            // Show the requested page
+            document.getElementById(nextPageId).classList.remove('hidden');
+        }
+    </script>
+
+</body>
+</html>
